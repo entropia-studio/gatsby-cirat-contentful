@@ -16,9 +16,14 @@
   },
   "dependencies": {
     "gatsby": "^4.12.1",
+    "gatsby-plugin-image": "^2.12.1",
     "gatsby-plugin-sass": "^5.12.1",
+    "gatsby-plugin-typography": "^4.12.1",
+    "gatsby-source-contentful": "^7.10.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "sass": "^1.50.1"
+    "react-typography": "^0.16.20",
+    "sass": "^1.50.1",
+    "typography": "^0.16.21"
   }
 }
