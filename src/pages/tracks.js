@@ -17,15 +17,12 @@ const Tracks = ({ data }) => {
 export const query = graphql`
   query getTracks {
     allContentfulTrack(filter: { sys: {}, node_locale: { eq: "en-US" } }) {
-      totalCount
       nodes {
         id
         name
         images {
           imageFile {
-            file {
-              url
-            }
+            gatsbyImageData(width: 764)
           }
         }
         description {

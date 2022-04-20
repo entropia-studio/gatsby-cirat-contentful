@@ -4,11 +4,13 @@
   border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   width: 100%;
+  margin-bottom: 1rem;
   &__title {
+    padding: 1rem;
     color: $primary_color;
   }
   &__description {
+    padding: 1rem 1rem 0 1rem;
   }
 }
