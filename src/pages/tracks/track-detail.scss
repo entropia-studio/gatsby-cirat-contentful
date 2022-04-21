@@ -1,0 +1,47 @@
+@import '../../styles.scss';
+
+.track {
+  border: 1px solid $primary_border_color;
+  width: 100%;
+  &__header {
+    background-color: $primary_color;
+    color: white;
+    padding: 1rem;
+    &__left-arrow {
+      filter: invert(100%);
+      margin-right: 0.5rem;
+      -webkit-filter: invert(100%);
+    }
+  }
+  &__detail {
+    &__info {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 1rem;
+      span {
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+      }
+      &__slice {
+        align-items: center;
+        display: flex;
+        flex: 0.5 1 100%;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+        font-weight: 700;
+        justify-content: space-between;
+        & > div {
+          align-items: center;
+          display: flex;
+          span {
+            margin: 0 0.5rem;
+          }
+        }
+        &__icon {
+          color: $primary_color;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

@@ -25,6 +25,7 @@
     "gatsby-transformer-sharp": "^4.12.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.3.1",
     "react-typography": "^0.16.20",
     "sass": "^1.50.1",
     "typography": "^0.16.21"

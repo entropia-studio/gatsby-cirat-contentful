@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Track from '../components/track/track.js';
-import Layout from '../components/layout/layout';
+import Track from '../../components/track/track.js';
+import Layout from '../../components/layout/layout.js';
 
 const Tracks = ({ data }) => {
   console.log(data);
@@ -22,12 +22,13 @@ export const query = graphql`
         name
         images {
           imageFile {
-            gatsbyImageData(width: 764)
+            gatsbyImageData(width: 768)
           }
         }
         description {
           raw
         }
+        slug
       }
     }
   }
