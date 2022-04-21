@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../../components/layout/layout';
 import './track-detail.scss';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -11,6 +11,7 @@ import {
   MdOutlineTrendingDown,
 } from 'react-icons/md';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
+import { Link, Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 
 const TrackDetail = ({ data }) => {
   console.log(data);
@@ -26,7 +27,10 @@ const TrackDetail = ({ data }) => {
     positiveGradient,
     totalTime,
   } = data.contentfulTrack;
+
   const image = getImage(data.contentfulTrack.images[0].imageFile);
+  const { t } = useTranslation();
+
   return (
     <Layout>
       <div className='track'>
@@ -47,20 +51,28 @@ const TrackDetail = ({ data }) => {
             <div className='track__detail__info__slice'>
               <div>
                 <MdDirectionsWalk className='track__detail__info__slice__icon' />
-                <span>Distance: {distance} km</span>
+                <span>
+                  {distance} {t('track.km')}
+                </span>
               </div>
               <div>
-                <span>Total time: {totalTime} h</span>
+                <span>
+                  {totalTime} {t('track.h')}
+                </span>
                 <MdTimer className='track__detail__info__slice__icon' />
               </div>
             </div>
             <div className='track__detail__info__slice'>
               <div>
                 <MdOutlineTrendingUp className='track__detail__info__slice__icon' />
-                <span>Max. Altitude: {maxAltitude} m</span>
+                <span>
+                  {t('track.maxAltitude')} {maxAltitude} m
+                </span>
               </div>
               <div>
-                <span>Min. Altitude: {minAltitude} m</span>
+                <span>
+                  {t('track.minAltitude')} {minAltitude} m
+                </span>
                 <MdOutlineTrendingDown className='track__detail__info__slice__icon' />
               </div>
             </div>
@@ -73,7 +85,7 @@ const TrackDetail = ({ data }) => {
 };
 
 export const query = graphql`
-  query getTrack($slug: String) {
+  query ($slug: String, $language: String!) {
     contentfulTrack(slug: { eq: $slug }) {
       name
       description {
@@ -89,6 +101,15 @@ export const query = graphql`
       images {
         imageFile {
           gatsbyImageData(width: 768)
+        }
+      }
+    }
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
         }
       }
     }
