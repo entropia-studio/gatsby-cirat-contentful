@@ -4,13 +4,17 @@
   border: 1px solid $primary_border_color;
   width: 100%;
   &__header {
+    align-items: center;
     background-color: $primary_color;
     color: white;
+    display: flex;
     padding: 1rem;
+    a {
+      color: white;
+      text-decoration: none;
+    }
     &__left-arrow {
-      filter: invert(100%);
       margin-right: 0.5rem;
-      -webkit-filter: invert(100%);
     }
   }
   &__detail {

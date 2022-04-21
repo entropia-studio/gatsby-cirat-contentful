@@ -2,16 +2,19 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/layout/layout';
 import './track-detail.scss';
-import { StaticImage } from 'gatsby-plugin-image';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import {
+  MdArrowBack,
   MdDirectionsWalk,
   MdTimer,
   MdOutlineTrendingUp,
   MdOutlineTrendingDown,
+  MdVerticalAlignTop,
+  MdVerticalAlignBottom,
+  MdRefresh,
 } from 'react-icons/md';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
-import { Link, Trans, useTranslation } from 'gatsby-plugin-react-i18next';
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next';
 
 const TrackDetail = ({ data }) => {
   console.log(data);
@@ -28,22 +31,19 @@ const TrackDetail = ({ data }) => {
     totalTime,
   } = data.contentfulTrack;
 
-  const image = getImage(data.contentfulTrack.images[0].imageFile);
+  const image = getImage(images[0].imageFile);
   const { t } = useTranslation();
 
   return (
     <Layout>
       <div className='track'>
         <div className='track__header'>
-          <Link to='/tracks'>
-            <StaticImage
-              src='../../images/left-arrow.png'
-              width={20}
-              className='track__header__left-arrow'
-              alt=''
-            ></StaticImage>
-          </Link>
-          {name}
+          <MdArrowBack
+            color='white'
+            size={'1.5rem'}
+            className='track__header__left-arrow'
+          />
+          <Link to='/tracks'>{name}</Link>
         </div>
         <div className='track__detail'>
           <GatsbyImage image={image} alt=''></GatsbyImage>
@@ -66,14 +66,34 @@ const TrackDetail = ({ data }) => {
               <div>
                 <MdOutlineTrendingUp className='track__detail__info__slice__icon' />
                 <span>
-                  {t('track.maxAltitude')} {maxAltitude} m
+                  {t('track.gradient')}+ {positiveGradient} {t('track.m')}
                 </span>
               </div>
               <div>
                 <span>
-                  {t('track.minAltitude')} {minAltitude} m
+                  {t('track.gradient')}- {negativeGradient} {t('track.m')}
                 </span>
                 <MdOutlineTrendingDown className='track__detail__info__slice__icon' />
+              </div>
+            </div>
+            <div className='track__detail__info__slice'>
+              <div>
+                <MdVerticalAlignTop className='track__detail__info__slice__icon' />
+                <span>
+                  {t('track.maxAltitude')}: {maxAltitude} {t('track.m')}
+                </span>
+              </div>
+              <div>
+                <span>
+                  {t('track.minAltitude')}: {minAltitude} {t('track.m')}
+                </span>
+                <MdVerticalAlignBottom className='track__detail__info__slice__icon' />
+              </div>
+            </div>
+            <div className='track__detail__info__slice'>
+              <div>
+                <MdRefresh className='track__detail__info__slice__icon' />
+                <span>{isCircular ? t('common.yes') : t('common.no')}</span>
               </div>
             </div>
             <span>{renderRichText(description)}</span>
